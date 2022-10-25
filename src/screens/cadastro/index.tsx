@@ -1,79 +1,53 @@
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-
-import * as Yup from 'yup';
-import { Formik } from 'formik';
-
-import { useAuth } from '@context/auth';
+import React from 'react';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import Logo from '@images/logo.svg';
-import Divider from '@images/divider.svg';
 
-import { FONT_SIZE_H3 } from '@styles/typograph';
 import { COLORS } from '@styles/colors';
 
-import Button from '@molecules/Button';
+import VeterinarioForm from '@organisms/VeterinarioForm';
+import ClienteForm from '@organisms/ClienteForm';
 import Spacer from '@atoms/Spacer';
 import NanoContainer from '@atoms/NanoContainer';
-import Input from '@atoms/Input';
-import CustomText from '@atoms/CustomText';
-import { ContainerForm } from './styles';
 
-interface FormValues {
-  nomeCompleto: string;
-  email: string;
-  senha: string;
-  confirmaSenha: string;
-}
-
-const FormSchema = Yup.object().shape({
-  nomeCompleto: Yup.string().required('Nome é obrigatório'),
-  email: Yup.string().required('E-mail é obrigatório'),
-  senha: Yup.string().required('Senha é obrigatória'),
-  confirmaSenha: Yup.string().required('Senha é obrigatória'),
-});
+const Tab = createMaterialTopTabNavigator();
 
 const CadastroScreen: React.FC = () => {
-  const { navigate } = useNavigation();
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const { signIn } = useAuth();
-
-  const handleFormSubmit = (values: FormValues) => {
-    if (loading) {
-      return;
-    }
-
-    console.log(values);
-
-    setLoading(true);
-    signIn('cliente');
-    setLoading(false);
-  };
-
-  const handleRegister = () => navigate('Cadastro');
-
   return (
-    <NanoContainer backgroundColor={COLORS.primary}>
-      <Formik
-        initialValues={{
-          nomeCompleto: '',
-          email: '',
-          senha: '',
-          confirmaSenha: '',
-        }}
-        onSubmit={handleFormSubmit}
-        validationSchema={FormSchema}>
-        {({ handleChange, handleSubmit, values, errors }) => (
-          <>
-            <Spacer top={12} />
+    <NanoContainer paddingHorizontal={0} backgroundColor={COLORS.primary}>
+      <Spacer top={12} />
 
-            <Logo />
+      <Logo style={{ alignSelf: 'center' }} />
 
-            <Spacer top={32} />
-          </>
-        )}
-      </Formik>
+      <Spacer top={32} />
+
+      <Tab.Navigator
+        screenOptions={{
+          tabBarLabelStyle: {
+            fontSize: 14,
+            fontWeight: 'bold',
+            textTransform: 'none',
+          },
+          tabBarIndicatorStyle: {
+            height: 1,
+            backgroundColor: '#ffffff',
+          },
+          tabBarStyle: {
+            backgroundColor: COLORS.primary,
+          },
+          tabBarActiveTintColor: '#ffffff',
+        }}>
+        <Tab.Screen
+          name="ClienteForm"
+          component={ClienteForm}
+          options={{ title: 'Cliente' }}
+        />
+        <Tab.Screen
+          name="VeterinarioForm"
+          component={VeterinarioForm}
+          options={{ title: 'Veterinário' }}
+        />
+      </Tab.Navigator>
     </NanoContainer>
   );
 };

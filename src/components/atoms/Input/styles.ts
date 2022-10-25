@@ -25,9 +25,9 @@ export const ContainerErrorMessage = styled.View`
   margin-top: ${SPACE_XS}px;
 `;
 
-export const ContainerIcon = styled.View`
+export const ContainerIcon = styled.View<IInputProps>`
   position: absolute;
   z-index: 9999;
-  bottom: 6px;
+  bottom: ${props => (props.errorMessage !== undefined ? 38 : 6)}px;
   left: 12px;
 `;

@@ -33,7 +33,11 @@ const Input: React.FC<IInputProps> = ({
           </CustomText>
         </ContainerLabel>
       )}
-      {icon && <ContainerIcon>{icon}</ContainerIcon>}
+
+      {icon && (
+        <ContainerIcon errorMessage={errorMessage}>{icon}</ContainerIcon>
+      )}
+
       <Container icon={icon} placeholderTextColor="#c1c1c1" {...restProps} />
 
       {errorMessage && (

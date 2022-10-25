@@ -61,7 +61,7 @@ const LoginScreen: React.FC = () => {
           <>
             <Spacer top={12} />
 
-            <Logo />
+            <Logo style={{ alignSelf: 'center' }} />
 
             <Spacer top={32} />
 
