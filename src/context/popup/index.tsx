@@ -12,7 +12,6 @@ export interface IPopupProps {
 }
 
 export interface IPopupButtonProps {
-  type: TButton;
   text: string;
   handler: () => void;
 }

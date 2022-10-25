@@ -1,8 +1,6 @@
 import { ActivityIndicator } from 'react-native';
 import React from 'react';
 
-import { COLORS } from '@styles/colors';
-
 interface ILoaderProps {
   color?: string;
   size?: 'large' | 'small';
@@ -10,7 +8,7 @@ interface ILoaderProps {
 }
 
 const Loader: React.FC<ILoaderProps> = ({
-  color = COLORS.black,
+  color = '#000000',
   size = 'large',
 }) => {
   return <ActivityIndicator color={color} size={size} />;

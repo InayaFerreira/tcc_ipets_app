@@ -40,7 +40,7 @@ const handleTextAlign = (props: ICustomTextProps) => {
 const handleTextColor = (
   color: (string & {}) | keyof typeof COLORS | undefined,
 ) => {
-  let definedColor = color || COLORS.black;
+  let definedColor = color || '#000000';
 
   for (let i in COLORS) {
     if (i === color) {

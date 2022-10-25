@@ -8,13 +8,13 @@ import { COLORS } from '@styles/colors';
 import VeterinarioForm from '@organisms/VeterinarioForm';
 import ClienteForm from '@organisms/ClienteForm';
 import Spacer from '@atoms/Spacer';
-import NanoContainer from '@atoms/NanoContainer';
+import Container from '@atoms/Container';
 
 const Tab = createMaterialTopTabNavigator();
 
 const CadastroScreen: React.FC = () => {
   return (
-    <NanoContainer paddingHorizontal={0} backgroundColor={COLORS.primary}>
+    <Container paddingHorizontal={0} backgroundColor={COLORS.primary}>
       <Spacer top={12} />
 
       <Logo style={{ alignSelf: 'center' }} />
@@ -48,7 +48,7 @@ const CadastroScreen: React.FC = () => {
           options={{ title: 'Veterinário' }}
         />
       </Tab.Navigator>
-    </NanoContainer>
+    </Container>
   );
 };
 

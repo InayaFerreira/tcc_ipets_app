@@ -3,7 +3,7 @@ import React from 'react';
 
 import { IPopupProps } from '@context/popup';
 
-import { SPACE_MD, SPACE_SM } from '../../../styles/spacing';
+import { SPACE_MD, SPACE_SM } from '@styles/spacing';
 
 import Button from '@molecules/Button';
 import CustomText from '@atoms/CustomText';
@@ -43,7 +43,7 @@ const Popup: React.FC<IPopup> = ({
           <ContainerBotoes orientation={orientationButtons}>
             {buttons &&
               buttons.map((button, index) => (
-                <Button key={index} type={button.type} onPress={button.handler}>
+                <Button key={index} onPress={button.handler}>
                   {button.text}
                 </Button>
               ))}

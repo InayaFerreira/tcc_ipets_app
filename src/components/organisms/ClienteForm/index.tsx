@@ -13,8 +13,8 @@ import { COLORS } from '@styles/colors';
 
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
-import NanoContainer from '@atoms/NanoContainer';
 import Input from '@atoms/Input';
+import Container from '@atoms/Container';
 import { ContainerForm } from './styles';
 
 interface FormValues {
@@ -48,7 +48,7 @@ const ClienteForm: React.FC = () => {
   };
 
   return (
-    <NanoContainer backgroundColor={COLORS.primary}>
+    <Container backgroundColor={COLORS.primary}>
       <Formik
         initialValues={{
           nomeCompleto: '',
@@ -113,7 +113,7 @@ const ClienteForm: React.FC = () => {
           </ContainerForm>
         )}
       </Formik>
-    </NanoContainer>
+    </Container>
   );
 };
 
