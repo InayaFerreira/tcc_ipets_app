@@ -6535,6 +6535,13 @@ react-native-svg@^12.3.0:
     css-select "^5.1.0"
     css-tree "^1.1.3"
 
+react-native-tab-view@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-3.3.0.tgz#3d24ae4f4c55cfd54cd1d2d1f8915b0b2c33a5da"
+  integrity sha512-xjAQe657Gp/de2QHb7ptksTg8Jcb+j3fLAdcYryzfavt/pe+HtKLpkCtQsxyIJpRrAO7YPxFsymi2N4MnNfePA==
+  dependencies:
+    use-latest-callback "^0.1.5"
+
 "react-native-text-input-mask@https://github.com/nano-incub/react-native-text-input-mask":
   version "3.1.4"
   resolved "https://github.com/nano-incub/react-native-text-input-mask#bffa277cf5966f624e0a6d5b9912597b59a3e1bb"

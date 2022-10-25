@@ -26,6 +26,7 @@
     "react-native-screens": "https://github.com/nano-incub/react-native-screens",
     "react-native-splash-screen": "^3.3.0",
     "react-native-svg": "^12.3.0",
+    "react-native-tab-view": "^3.3.0",
     "react-native-text-input-mask": "https://github.com/nano-incub/react-native-text-input-mask",
     "styled-components": "^5.3.5",
     "yup": "^0.32.11"

@@ -7,6 +7,7 @@ import CustomText from '@atoms/CustomText';
 import {
   Container,
   ContainerErrorMessage,
+  ContainerIcon,
   ContainerInput,
   ContainerLabel,
 } from './styles';
@@ -14,11 +15,13 @@ import {
 export interface IInputProps extends TextInputMaskProps {
   label?: string;
   errorMessage?: string;
+  icon?: React.ReactNode;
 }
 
 const Input: React.FC<IInputProps> = ({
   label,
   errorMessage,
+  icon,
   ...restProps
 }) => {
   return (
@@ -30,7 +33,8 @@ const Input: React.FC<IInputProps> = ({
           </CustomText>
         </ContainerLabel>
       )}
-      <Container {...restProps} />
+      {icon && <ContainerIcon>{icon}</ContainerIcon>}
+      <Container icon={icon} placeholderTextColor="#c1c1c1" {...restProps} />
 
       {errorMessage && (
         <ContainerErrorMessage>

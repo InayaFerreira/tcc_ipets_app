@@ -2,17 +2,15 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginScreen from '@screens/login';
+import CadastroScreen from '@screens/cadastro';
 
 const Stack = createNativeStackNavigator();
 
 const AuthStack: React.FC = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen
-        name="Login"
-        options={{ title: 'Screen 1' }}
-        component={LoginScreen}
-      />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Cadastro" component={CadastroScreen} />
     </Stack.Navigator>
   );
 };
