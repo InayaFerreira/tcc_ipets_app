@@ -1,4 +1,4 @@
-import { Pressable, ScrollView } from 'react-native';
+import { Linking, Pressable, ScrollView } from 'react-native';
 import React from 'react';
 
 import { ClinicaService } from '@services/api/Clinica';
@@ -42,7 +42,15 @@ const HomeScreen: React.FC = () => {
 
         <Spacer top={8} />
 
-        <Button widthPercentage={50}>Abrigos Próximos</Button>
+        <Button
+          widthPercentage={50}
+          onPress={() =>
+            Linking.openURL(
+              'https://www.google.com/maps/search/Abrigos+de+Animais',
+            )
+          }>
+          Abrigos Próximos
+        </Button>
 
         <Spacer top={12} />
 

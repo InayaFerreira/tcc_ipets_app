@@ -9,6 +9,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { IClinica } from '@services/api/Clinica';
 
 import HomeScreen from '@screens/home';
+import ClinicaScreen from '@screens/clinica';
 
 import { TabParamList } from './tabs.routes';
 
@@ -28,7 +29,7 @@ const HomeStack: React.FC = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Clinica" component={HomeScreen} />
+      <Stack.Screen name="Clinica" component={ClinicaScreen} />
     </Stack.Navigator>
   );
 };

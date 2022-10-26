@@ -14,7 +14,7 @@ const AvaliacaoEstrelas: React.FC<IAvaliacaoEstrelasProps> = ({
   avaliacao,
 }) => {
   return (
-    <Row>
+    <Row justifyContent="flex-start">
       {avaliacao >= 1 ? <StarFull /> : <StarEmpty />}
       {avaliacao >= 2 ? <StarFull /> : <StarEmpty />}
       {avaliacao >= 3 ? <StarFull /> : <StarEmpty />}
