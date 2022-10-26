@@ -46,7 +46,6 @@ const CustomText: React.FC<ICustomTextProps> = ({
   p,
   size = FONT_SIZE_PARAGRAPH,
   letterSpacing,
-  lineHeight,
   color,
   bold,
   left,
@@ -65,7 +64,6 @@ const CustomText: React.FC<ICustomTextProps> = ({
       p={p}
       size={size}
       letterSpacing={letterSpacing}
-      lineHeight={lineHeight}
       color={color}
       bold={bold}
       left={left}

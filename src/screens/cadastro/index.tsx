@@ -14,7 +14,7 @@ const Tab = createMaterialTopTabNavigator();
 
 const CadastroScreen: React.FC = () => {
   return (
-    <Container paddingHorizontal={0} backgroundColor={COLORS.primary}>
+    <Container paddingHorizontal={0}>
       <Spacer top={12} />
 
       <Logo style={{ alignSelf: 'center' }} />

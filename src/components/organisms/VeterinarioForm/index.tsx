@@ -10,8 +10,6 @@ import EmailIcon from '@icons/email.svg';
 import ChaveIcon from '@icons/chave.svg';
 import CertificadoIcon from '@icons/certificado.svg';
 
-import { COLORS } from '@styles/colors';
-
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
 import Input from '@atoms/Input';
@@ -51,7 +49,7 @@ const VeterinarioForm: React.FC = () => {
   };
 
   return (
-    <Container backgroundColor={COLORS.primary}>
+    <Container>
       <Formik
         initialValues={{
           nomeCompleto: '',
@@ -110,7 +108,6 @@ const VeterinarioForm: React.FC = () => {
               label="CRMV"
               placeholder="Digite seu CRMV"
               icon={<CertificadoIcon width={24} height={24} />}
-              secureTextEntry
               value={values.crmv}
               onChangeText={handleChange('crmv')}
               errorMessage={touched.crmv ? errors.crmv : undefined}

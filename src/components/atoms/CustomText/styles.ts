@@ -59,7 +59,5 @@ export const StyledText = styled(Text)<ICustomTextProps>`
   font-size: ${props => handleTextSize(props)}px;
   text-align: ${props => handleTextAlign(props)};
   letter-spacing: ${props => props.letterSpacing || 0}px;
-  line-height: ${props =>
-    props.lineHeight || (props.size || 0) * lineHeightMultiplier}px;
   color: ${props => handleTextColor(props.color)};
 `;

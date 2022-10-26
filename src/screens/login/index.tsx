@@ -12,7 +12,6 @@ import EmailIcon from '@icons/email.svg';
 import ChaveIcon from '@icons/chave.svg';
 
 import { FONT_SIZE_H3 } from '@styles/typograph';
-import { COLORS } from '@styles/colors';
 
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
@@ -52,14 +51,14 @@ const LoginScreen: React.FC = () => {
   const handleRegister = () => navigate('Cadastro');
 
   return (
-    <Container backgroundColor={COLORS.primary}>
+    <Container>
       <Formik
         initialValues={{ email: '', senha: '' }}
         onSubmit={handleFormSubmit}
         validationSchema={FormSchema}>
         {({ handleChange, handleSubmit, values, errors }) => (
           <>
-            <Spacer top={12} />
+            <Spacer top={48} />
 
             <Logo style={{ alignSelf: 'center' }} />
 

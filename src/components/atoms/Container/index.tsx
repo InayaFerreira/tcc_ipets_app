@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { COLORS } from '@styles/colors';
+
 import { ContainerScrollView, ContainerView } from './styles';
 
 export interface IContainerProps {
@@ -14,7 +16,7 @@ const Container: React.FC<IContainerProps> = ({
   isScrollView = true,
   paddingVertical = 8,
   paddingHorizontal = 16,
-  backgroundColor = '#ffffff',
+  backgroundColor = COLORS.primary,
   children,
 }) => {
   return !isScrollView ? (

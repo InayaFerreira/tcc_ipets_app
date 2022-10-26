@@ -9,8 +9,6 @@ import UserIcon from '@icons/user.svg';
 import EmailIcon from '@icons/email.svg';
 import ChaveIcon from '@icons/chave.svg';
 
-import { COLORS } from '@styles/colors';
-
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
 import Input from '@atoms/Input';
@@ -48,7 +46,7 @@ const ClienteForm: React.FC = () => {
   };
 
   return (
-    <Container backgroundColor={COLORS.primary}>
+    <Container>
       <Formik
         initialValues={{
           nomeCompleto: '',
