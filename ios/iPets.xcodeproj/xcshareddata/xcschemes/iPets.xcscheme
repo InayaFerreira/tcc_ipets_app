@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "congeladorn.app"
-               BlueprintName = "congeladorn"
-               ReferencedContainer = "container:congeladorn.xcodeproj">
+               BuildableName = "iPets.app"
+               BlueprintName = "iPets"
+               ReferencedContainer = "container:iPets.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "congeladornTests.xctest"
-               BlueprintName = "congeladornTests"
-               ReferencedContainer = "container:congeladorn.xcodeproj">
+               BuildableName = "iPetsTests.xctest"
+               BlueprintName = "iPetsTests"
+               ReferencedContainer = "container:iPets.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "congeladorn.app"
-            BlueprintName = "congeladorn"
-            ReferencedContainer = "container:congeladorn.xcodeproj">
+            BuildableName = "iPets.app"
+            BlueprintName = "iPets"
+            ReferencedContainer = "container:iPets.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "congeladorn.app"
-            BlueprintName = "congeladorn"
-            ReferencedContainer = "container:congeladorn.xcodeproj">
+            BuildableName = "iPets.app"
+            BlueprintName = "iPets"
+            ReferencedContainer = "container:iPets.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,4 +1,4 @@
-package com.congeladorn.newarchitecture.components;
+package com.ipets.app.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;
