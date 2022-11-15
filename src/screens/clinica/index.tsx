@@ -24,6 +24,10 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
   const { clinica } = route.params;
   const popup = usePopup();
 
+  const handleConsulta = () => {
+    navigation.navigate('AgendaConsulta', { clinica });
+  };
+
   const handleChat = () => {
     popup.show({
       title: 'Aviso',
@@ -112,7 +116,9 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <Spacer top={24} />
 
-        <Button widthPercentage={50}>Marcar consulta</Button>
+        <Button widthPercentage={50} onPress={handleConsulta}>
+          Marcar consulta
+        </Button>
 
         <Spacer top={24} />
 
