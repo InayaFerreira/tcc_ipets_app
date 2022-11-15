@@ -1,4 +1,3 @@
-import { Pressable } from 'react-native';
 import React, { useState } from 'react';
 
 import * as Yup from 'yup';
@@ -8,18 +7,12 @@ import { useAuth } from '@context/auth';
 
 import UserIcon from '@icons/user.svg';
 import EmailIcon from '@icons/email.svg';
-import UnchekedIcon from '@icons/checkbox/unchecked.svg';
-import CheckedIcon from '@icons/checkbox/checked.svg';
 import ChaveIcon from '@icons/chave.svg';
 import CertificadoIcon from '@icons/certificado.svg';
 
-import { getOpacityByPress } from '@utils/styles';
-
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
-import Row from '@atoms/Row';
 import Input from '@atoms/Input';
-import CustomText from '@atoms/CustomText';
 import Container from '@atoms/Container';
 import { ContainerForm } from './styles';
 
@@ -39,11 +32,9 @@ const FormSchema = Yup.object().shape({
   crmv: Yup.string().required('CRMV é obrigatório'),
 });
 
-const VeterinarioForm: React.FC = () => {
+const ClinicaForm: React.FC = () => {
   const { signIn } = useAuth();
-
   const [loading, setLoading] = useState<boolean>(false);
-  const [isVoluntariar, setIsVoluntariar] = useState<boolean>(false);
 
   const handleFormSubmit = (values: FormValues) => {
     if (loading) {
@@ -122,45 +113,6 @@ const VeterinarioForm: React.FC = () => {
               errorMessage={touched.crmv ? errors.crmv : undefined}
             />
 
-            <Spacer top={16} />
-
-            <CustomText color="#ffffff" bold>
-              Você quer se voluntariar para tratar animais de rua? (Você será
-              notificado pelo app sobre animais de rua encontrados)
-            </CustomText>
-
-            <Spacer top={8} />
-
-            <Row justifyContent="space-around">
-              <Pressable
-                style={getOpacityByPress}
-                onPress={() => setIsVoluntariar(true)}>
-                <Row justifyContent="flex-start">
-                  {isVoluntariar ? <CheckedIcon /> : <UnchekedIcon />}
-
-                  <Spacer right={6} />
-
-                  <CustomText color="#ffffff" bold>
-                    Sim
-                  </CustomText>
-                </Row>
-              </Pressable>
-
-              <Pressable
-                style={getOpacityByPress}
-                onPress={() => setIsVoluntariar(false)}>
-                <Row justifyContent="flex-start">
-                  {!isVoluntariar ? <CheckedIcon /> : <UnchekedIcon />}
-
-                  <Spacer right={6} />
-
-                  <CustomText color="#ffffff" bold>
-                    Não
-                  </CustomText>
-                </Row>
-              </Pressable>
-            </Row>
-
             <Spacer top={32} />
 
             <Button
@@ -178,4 +130,4 @@ const VeterinarioForm: React.FC = () => {
   );
 };
 
-export default VeterinarioForm;
+export default ClinicaForm;

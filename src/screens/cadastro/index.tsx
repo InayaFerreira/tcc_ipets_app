@@ -6,6 +6,7 @@ import Logo from '@images/logo.svg';
 import { COLORS } from '@styles/colors';
 
 import VeterinarioForm from '@organisms/VeterinarioForm';
+import ClinicaForm from '@organisms/ClinicaForm';
 import ClienteForm from '@organisms/ClienteForm';
 import Spacer from '@atoms/Spacer';
 import Container from '@atoms/Container';
@@ -46,6 +47,11 @@ const CadastroScreen: React.FC = () => {
           name="VeterinarioForm"
           component={VeterinarioForm}
           options={{ title: 'Veterinário' }}
+        />
+        <Tab.Screen
+          name="ClinicaForm"
+          component={ClinicaForm}
+          options={{ title: 'Clínica' }}
         />
       </Tab.Navigator>
     </Container>
