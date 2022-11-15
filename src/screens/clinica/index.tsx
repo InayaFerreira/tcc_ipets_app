@@ -2,6 +2,8 @@ import { Pressable } from 'react-native';
 import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { usePopup } from '@context/popup';
+
 import Voltar from '@images/voltar.svg';
 
 import { FONT_SIZE_H2 } from '@styles/typograph';
@@ -20,6 +22,20 @@ type Props = NativeStackScreenProps<HomeStackParams, 'Clinica'>;
 
 const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
   const { clinica } = route.params;
+  const popup = usePopup();
+
+  const handleChat = () => {
+    popup.show({
+      title: 'Aviso',
+      content: 'Este recurso encontra-se em desenvolvimento.',
+      buttons: [
+        {
+          text: 'OK',
+          handler: popup.hide,
+        },
+      ],
+    });
+  };
 
   return (
     <Container paddingHorizontal={0}>
@@ -97,6 +113,12 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
         <Spacer top={24} />
 
         <Button widthPercentage={50}>Marcar consulta</Button>
+
+        <Spacer top={24} />
+
+        <Button widthPercentage={75} onPress={handleChat}>
+          Converse com a Clínica
+        </Button>
 
         <Spacer bottom={24} />
       </ContainerWhite>
