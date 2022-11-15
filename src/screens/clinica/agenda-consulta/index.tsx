@@ -44,7 +44,6 @@ const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
     popup.show({
       content: (
         <CustomCalendar
-          startDate={consultaData}
           onDayPress={date => {
             setConsultaData(date);
             popup.hide();
