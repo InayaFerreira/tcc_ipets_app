@@ -1,17 +1,21 @@
-import { ScrollView } from 'react-native';
+import { Pressable, ScrollView } from 'react-native';
 import React from 'react';
 
+import { IPet } from '@services/api/PetService';
+import { usePopup } from '@context/popup';
 import { useAuth } from '@context/auth';
 
 import CalendarIcon from '@icons/calendario.svg';
-import AddIcon from '@icons/add.svg';
 
-import { FONT_SIZE_H2 } from '@styles/typograph';
+import { getOpacityByPress } from '@utils/styles';
+import { FONT_SIZE_H2, FONT_SIZE_H3 } from '@styles/typograph';
 
+import PetListItem from '@molecules/PetListItem';
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
 import Row from '@atoms/Row';
 import CustomText from '@atoms/CustomText';
+import CustomCalendar from '@atoms/CustomCalendar';
 import ContainerWhite from '@atoms/ContainerWhite';
 import Container from '@atoms/Container';
 
@@ -23,6 +27,13 @@ interface IClinicaHomeScreenProps {
 
 const ClinicaHomeScreen: React.FC<IClinicaHomeScreenProps> = () => {
   const { signOut } = useAuth();
+  const popup = usePopup();
+
+  const openDatePicker = () => {
+    popup.show({
+      content: <CustomCalendar onDayPress={popup.hide} />,
+    });
+  };
 
   return (
     <Container paddingHorizontal={0}>
@@ -35,13 +46,13 @@ const ClinicaHomeScreen: React.FC<IClinicaHomeScreenProps> = () => {
 
         <ContainerTitulo>
           <CustomText size={FONT_SIZE_H2} bold center>
-            clinica.nome
+            Clínica Futuro
           </CustomText>
 
           <Spacer top={12} />
 
           <CustomText bold center>
-            clinica.endereco
+            Rua Edinaldo Pereira, 245 São Paulo -SP
           </CustomText>
         </ContainerTitulo>
 
@@ -60,7 +71,41 @@ const ClinicaHomeScreen: React.FC<IClinicaHomeScreenProps> = () => {
         <Spacer top={16} />
 
         <ScrollView horizontal>
-          <></>
+          <PetListItem
+            pet={
+              {
+                nome: 'Lua',
+                raca: 'Vira-Lata',
+                idade: 3,
+                ultimaConsulta: '13/01/2022',
+              } as IPet
+            }
+            selecionado={false}
+          />
+
+          <PetListItem
+            pet={
+              {
+                nome: 'Sol',
+                raca: 'Vira-Lata',
+                idade: 3,
+                ultimaConsulta: '10/11/2022',
+              } as IPet
+            }
+            selecionado={false}
+          />
+
+          <PetListItem
+            pet={
+              {
+                nome: 'Apyr',
+                raca: 'Pastor Alemão',
+                idade: 3,
+                ultimaConsulta: '15/08/2022',
+              } as IPet
+            }
+            selecionado={false}
+          />
         </ScrollView>
 
         <Spacer top={16} />
@@ -72,14 +117,60 @@ const ClinicaHomeScreen: React.FC<IClinicaHomeScreenProps> = () => {
 
           <Spacer right={8} />
 
-          <CalendarIcon />
+          <Pressable style={getOpacityByPress} onPress={openDatePicker}>
+            <CalendarIcon />
+          </Pressable>
         </Row>
 
         <Spacer top={16} />
 
         <ScrollView horizontal>
-          <></>
+          <PetListItem
+            pet={
+              {
+                nome: 'Lua',
+                raca: 'Vira-Lata',
+                idade: 3,
+                ultimaConsulta: '13/01/2022',
+              } as IPet
+            }
+            selecionado={false}
+          />
+
+          <PetListItem
+            pet={
+              {
+                nome: 'Sol',
+                raca: 'Vira-Lata',
+                idade: 3,
+                ultimaConsulta: '10/11/2022',
+              } as IPet
+            }
+            selecionado={false}
+          />
+
+          <PetListItem
+            pet={
+              {
+                nome: 'Apyr',
+                raca: 'Pastor Alemão',
+                idade: 3,
+                ultimaConsulta: '15/08/2022',
+              } as IPet
+            }
+            selecionado={false}
+          />
         </ScrollView>
+
+        <Spacer top={24} />
+
+        <CustomText size={FONT_SIZE_H2} bold>
+          Veterinários
+        </CustomText>
+
+        <CustomText size={FONT_SIZE_H3}>
+          Funcionalidade em desenvolvimento
+        </CustomText>
 
         <Spacer bottom={16} />
       </ContainerWhite>
