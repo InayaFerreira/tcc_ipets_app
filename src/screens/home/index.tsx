@@ -1,7 +1,7 @@
 import { Linking, Pressable, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { ClinicaService } from '@services/api/Clinica';
+import { ClinicaService, IClinica } from '@services/api/Clinica';
 
 import Menu from '@images/menu.svg';
 import Logo from '@images/logo.svg';
@@ -11,12 +11,21 @@ import { FONT_SIZE_H2, FONT_SIZE_H3 } from '@styles/typograph';
 import ClinicaListItem from '@molecules/ClinicaListItem';
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
+import Loader from '@atoms/Loader';
 import CustomText from '@atoms/CustomText';
 import ContainerWhite from '@atoms/ContainerWhite';
 import Container from '@atoms/Container';
 import { ContainerTitulo } from './styles';
 
 const HomeScreen: React.FC = () => {
+  const [clinicas, setClinicas] = useState<IClinica[]>();
+
+  useEffect(() => {
+    ClinicaService.Listagem().then(({ data }) => {
+      setClinicas(data);
+    });
+  }, []);
+
   return (
     <Container paddingHorizontal={0}>
       <Spacer top={16} />
@@ -54,45 +63,51 @@ const HomeScreen: React.FC = () => {
 
         <Spacer top={12} />
 
-        <CustomText size={FONT_SIZE_H2} bold>
-          Clínicas Novas:
-        </CustomText>
+        {clinicas !== undefined ? (
+          <>
+            <CustomText size={FONT_SIZE_H2} bold>
+              Clínicas Novas:
+            </CustomText>
 
-        <Spacer top={16} />
+            <Spacer top={16} />
 
-        <ScrollView horizontal>
-          {ClinicaService.Listagem().map(clinica => (
-            <ClinicaListItem key={clinica.id} clinica={clinica} />
-          ))}
-        </ScrollView>
+            <ScrollView horizontal>
+              {clinicas.map(clinica => (
+                <ClinicaListItem key={clinica.clinicaId} clinica={clinica} />
+              ))}
+            </ScrollView>
 
-        <Spacer top={16} />
+            <Spacer top={16} />
 
-        <CustomText size={FONT_SIZE_H2} bold>
-          Clínicas mais bem avaliadas:
-        </CustomText>
+            <CustomText size={FONT_SIZE_H2} bold>
+              Clínicas mais bem avaliadas:
+            </CustomText>
 
-        <Spacer top={16} />
+            <Spacer top={16} />
 
-        <ScrollView horizontal>
-          {ClinicaService.Listagem().map(clinica => (
-            <ClinicaListItem key={clinica.id} clinica={clinica} />
-          ))}
-        </ScrollView>
+            <ScrollView horizontal>
+              {clinicas.map(clinica => (
+                <ClinicaListItem key={clinica.clinicaId} clinica={clinica} />
+              ))}
+            </ScrollView>
 
-        <Spacer top={16} />
+            <Spacer top={16} />
 
-        <CustomText size={FONT_SIZE_H2} bold>
-          Clínicas mais próximas:
-        </CustomText>
+            <CustomText size={FONT_SIZE_H2} bold>
+              Clínicas mais próximas:
+            </CustomText>
 
-        <Spacer top={16} />
+            <Spacer top={16} />
 
-        <ScrollView horizontal>
-          {ClinicaService.Listagem().map(clinica => (
-            <ClinicaListItem key={clinica.id} clinica={clinica} />
-          ))}
-        </ScrollView>
+            <ScrollView horizontal>
+              {clinicas.map(clinica => (
+                <ClinicaListItem key={clinica.clinicaId} clinica={clinica} />
+              ))}
+            </ScrollView>
+          </>
+        ) : (
+          <Loader />
+        )}
       </ContainerWhite>
     </Container>
   );

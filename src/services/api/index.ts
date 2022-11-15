@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-export const BASE_URL = '';
-export const API_VERSION = '1';
+export const BASE_URL = 'https://petzapi.herokuapp.com';
 
 export const api = axios.create({
-  baseURL: `${BASE_URL}/v${API_VERSION}`,
+  baseURL: `${BASE_URL}`,
 });

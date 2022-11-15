@@ -29,7 +29,7 @@ const ClinicaListItem: React.FC<IClinicaListItemProps> = ({ clinica }) => {
     <Container
       style={getOpacityByPress}
       onPress={() => navigate('Clinica', { clinica })}>
-      <ContainerImagem source={{ uri: clinica.imagem }} />
+      <ContainerImagem source={require('@images/clinica.png')} />
 
       <ContainerDados>
         <CustomText size={13} bold numberOfLines={1}>
@@ -37,16 +37,16 @@ const ClinicaListItem: React.FC<IClinicaListItemProps> = ({ clinica }) => {
         </CustomText>
 
         <CustomText size={10} numberOfLines={2}>
-          {clinica.servicos.join(', ')}.
+          {clinica.servicos}
         </CustomText>
 
         <Spacer top={12} />
 
         <ContainerAvaliacoes>
-          <AvaliacaoEstrelas avaliacao={clinica.avaliacao} />
+          <AvaliacaoEstrelas avaliacao={clinica.pontuacao} />
 
           <CustomText size={10} bold>
-            {clinica.avaliacaoCount} avaliações
+            {clinica.numeroAvaliacoes} avaliações
           </CustomText>
         </ContainerAvaliacoes>
       </ContainerDados>
