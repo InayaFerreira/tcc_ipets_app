@@ -6,7 +6,7 @@ import {
 import { CompositeNavigationProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
-import HomeScreen from '@screens/home';
+import ClinicaHomeScreen from '@screens/clinica/home';
 
 import { TabParamList } from './tabs.routes';
 
@@ -24,7 +24,7 @@ const Stack = createNativeStackNavigator<ClinicaStackParams>();
 const ClinicaStack: React.FC = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={ClinicaHomeScreen} />
     </Stack.Navigator>
   );
 };

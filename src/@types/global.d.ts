@@ -8,5 +8,5 @@ export declare global {
     }
   }
 
-  type TAuthState = 'desautenticado' | 'cliente' | 'veterinario' | 'clinica';
+  type TAuthState = 'desautenticado' | 'cliente' | 'clinica';
 }

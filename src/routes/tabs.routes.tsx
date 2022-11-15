@@ -3,13 +3,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { useAuth } from '@context/auth';
 
-import VeterinarioStack from '@routes/veterinario.stack';
 import ClinicaStack from '@routes/clinica.stack';
 import ClienteStack from '@routes/cliente.stack';
 
 export type TabParamList = {
   ClienteStack: undefined;
-  VeterinarioStack: undefined;
   ClinicaStack: undefined;
 };
 
@@ -26,9 +24,6 @@ const TabRoutes: React.FC = () => {
       }}>
       {authState === 'cliente' && (
         <Tab.Screen name="ClienteStack" component={ClienteStack} />
-      )}
-      {authState === 'veterinario' && (
-        <Tab.Screen name="VeterinarioStack" component={VeterinarioStack} />
       )}
       {authState === 'clinica' && (
         <Tab.Screen name="ClinicaStack" component={ClinicaStack} />
