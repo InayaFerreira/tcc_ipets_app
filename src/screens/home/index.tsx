@@ -1,5 +1,6 @@
 import { Linking, Pressable, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import { ClinicaService, IClinica } from '@services/api/Clinica';
 
@@ -7,6 +8,8 @@ import Menu from '@images/menu.svg';
 import Logo from '@images/logo.svg';
 
 import { FONT_SIZE_H2, FONT_SIZE_H3 } from '@styles/typograph';
+
+import { ClienteStackNavigationProp } from '@routes/cliente.stack';
 
 import ClinicaListItem from '@molecules/ClinicaListItem';
 import Button from '@molecules/Button';
@@ -18,6 +21,7 @@ import Container from '@atoms/Container';
 import { ContainerTitulo } from './styles';
 
 const HomeScreen: React.FC = () => {
+  const { navigate } = useNavigation<ClienteStackNavigationProp>();
   const [clinicas, setClinicas] = useState<IClinica[]>();
 
   useEffect(() => {
@@ -30,7 +34,9 @@ const HomeScreen: React.FC = () => {
     <Container paddingHorizontal={0}>
       <Spacer top={16} />
 
-      <Pressable style={{ position: 'absolute', top: 16, left: 16 }}>
+      <Pressable
+        style={{ position: 'absolute', top: 16, left: 16 }}
+        onPress={() => navigate('PerfilCliente')}>
         <Menu />
       </Pressable>
 

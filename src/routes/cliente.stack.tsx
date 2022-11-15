@@ -8,6 +8,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 import { IClinica } from '@services/api/Clinica';
 
+import PerfilClienteScreen from '@screens/perfil-cliente';
 import HomeScreen from '@screens/home';
 import AgendaConsultaScreen from '@screens/clinica/agenda-consulta';
 import ClinicaScreen from '@screens/clinica';
@@ -22,6 +23,7 @@ export type ClienteStackParams = {
   AgendaConsulta: {
     clinica: IClinica;
   };
+  PerfilCliente: undefined;
 };
 
 export type ClienteStackNavigationProp = CompositeNavigationProp<
@@ -37,6 +39,7 @@ const ClienteStack: React.FC = () => {
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Clinica" component={ClinicaScreen} />
       <Stack.Screen name="AgendaConsulta" component={AgendaConsultaScreen} />
+      <Stack.Screen name="PerfilCliente" component={PerfilClienteScreen} />
     </Stack.Navigator>
   );
 };

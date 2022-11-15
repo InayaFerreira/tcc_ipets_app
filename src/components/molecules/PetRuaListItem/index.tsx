@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { IPet } from '@services/api/PetService';
-
 import { getOpacityByPress } from '@utils/styles';
 
 import Spacer from '@atoms/Spacer';
@@ -13,23 +11,15 @@ import {
   ContainerImagem,
 } from './styles';
 
-interface IPetListItemProps {
-  pet: IPet;
-  selecionado: boolean;
-  setAnimalSelecionado?: React.Dispatch<React.SetStateAction<IPet | undefined>>;
+interface IPetRuaListItemProps {
+  pet: any;
+
   children?: React.ReactNode;
 }
 
-const PetListItem: React.FC<IPetListItemProps> = ({
-  pet,
-  selecionado,
-  setAnimalSelecionado,
-}) => {
+const PetRuaListItem: React.FC<IPetRuaListItemProps> = ({ pet }) => {
   return (
-    <Container
-      style={getOpacityByPress}
-      selecionado={selecionado}
-      onPress={() => setAnimalSelecionado?.(pet)}>
+    <Container style={getOpacityByPress}>
       <ContainerImagem source={require('@images/pet.png')} />
 
       <ContainerDados>
@@ -41,12 +31,13 @@ const PetListItem: React.FC<IPetListItemProps> = ({
 
         <ContainerAvaliacoes>
           <CustomText size={10} bold>
-            {pet.raca}, {pet.idade} anos{'\n'}
-            {pet.porte}
+            {pet.endereco}
+            {'\n'}
+            {pet.status}
           </CustomText>
 
           <CustomText size={10} bold>
-            {pet.ultimaConsulta}
+            {pet.atualizacao}
           </CustomText>
         </ContainerAvaliacoes>
       </ContainerDados>
@@ -54,4 +45,4 @@ const PetListItem: React.FC<IPetListItemProps> = ({
   );
 };
 
-export default PetListItem;
+export default PetRuaListItem;
