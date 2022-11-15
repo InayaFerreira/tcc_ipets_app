@@ -1,22 +1,38 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeStack from './home.stack';
+import { useAuth } from '@context/auth';
+
+import VeterinarioStack from '@routes/veterinario.stack';
+import ClinicaStack from '@routes/clinica.stack';
+import ClienteStack from '@routes/cliente.stack';
 
 export type TabParamList = {
-  HomeStack: undefined;
+  ClienteStack: undefined;
+  VeterinarioStack: undefined;
+  ClinicaStack: undefined;
 };
 
 const Tab = createBottomTabNavigator();
 
 const TabRoutes: React.FC = () => {
+  const { authState } = useAuth();
+
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarStyle: { display: 'none' },
       }}>
-      <Tab.Screen name="HomeStack" component={HomeStack} />
+      {authState === 'cliente' && (
+        <Tab.Screen name="ClienteStack" component={ClienteStack} />
+      )}
+      {authState === 'veterinario' && (
+        <Tab.Screen name="VeterinarioStack" component={VeterinarioStack} />
+      )}
+      {authState === 'clinica' && (
+        <Tab.Screen name="ClinicaStack" component={ClinicaStack} />
+      )}
     </Tab.Navigator>
   );
 };

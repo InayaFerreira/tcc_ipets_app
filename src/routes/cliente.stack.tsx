@@ -14,7 +14,7 @@ import ClinicaScreen from '@screens/clinica';
 
 import { TabParamList } from './tabs.routes';
 
-export type HomeStackParams = {
+export type ClienteStackParams = {
   Home: undefined;
   Clinica: {
     clinica: IClinica;
@@ -24,14 +24,14 @@ export type HomeStackParams = {
   };
 };
 
-export type HomeStackNavigationProp = CompositeNavigationProp<
-  BottomTabNavigationProp<TabParamList, 'HomeStack'>,
-  NativeStackNavigationProp<HomeStackParams>
+export type ClienteStackNavigationProp = CompositeNavigationProp<
+  BottomTabNavigationProp<TabParamList, 'ClienteStack'>,
+  NativeStackNavigationProp<ClienteStackParams>
 >;
 
-const Stack = createNativeStackNavigator<HomeStackParams>();
+const Stack = createNativeStackNavigator<ClienteStackParams>();
 
-const HomeStack: React.FC = () => {
+const ClienteStack: React.FC = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={HomeScreen} />
@@ -41,4 +41,4 @@ const HomeStack: React.FC = () => {
   );
 };
 
-export default HomeStack;
+export default ClienteStack;

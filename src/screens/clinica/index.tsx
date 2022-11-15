@@ -8,7 +8,7 @@ import Voltar from '@images/voltar.svg';
 
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
-import { HomeStackParams } from '@routes/home.stack';
+import { ClienteStackParams } from '@routes/cliente.stack';
 
 import Button from '@molecules/Button';
 import AvaliacaoEstrelas from '@molecules/AvaliacaoEstrelas';
@@ -18,7 +18,7 @@ import ContainerWhite from '@atoms/ContainerWhite';
 import Container from '@atoms/Container';
 import { ContainerImagem, ContainerTitulo } from './styles';
 
-type Props = NativeStackScreenProps<HomeStackParams, 'Clinica'>;
+type Props = NativeStackScreenProps<ClienteStackParams, 'Clinica'>;
 
 const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
   const { clinica } = route.params;
@@ -92,7 +92,7 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <Spacer top={12} />
 
-        <CustomText>{clinica.servicos}.</CustomText>
+        <CustomText>{clinica.servicos}</CustomText>
 
         <Spacer top={24} />
 

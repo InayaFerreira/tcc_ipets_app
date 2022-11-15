@@ -3,10 +3,10 @@ export declare global {
     interface RootParamList {
       Login: undefined;
       Cadastro: undefined;
-      HomeStack: undefined;
+      ClienteStack: undefined;
       Home: undefined;
     }
   }
 
-  type TAuthState = 'desautenticado' | 'cliente' | 'veterinario';
+  type TAuthState = 'desautenticado' | 'cliente' | 'veterinario' | 'clinica';
 }

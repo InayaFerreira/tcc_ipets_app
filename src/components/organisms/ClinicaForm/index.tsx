@@ -44,7 +44,7 @@ const ClinicaForm: React.FC = () => {
     console.log(values);
 
     setLoading(true);
-    signIn('veterinario');
+    signIn('clinica');
     setLoading(false);
   };
 

@@ -5,7 +5,7 @@ import { IClinica } from '@services/api/Clinica';
 
 import { getOpacityByPress } from '@utils/styles';
 
-import { HomeStackNavigationProp } from '@routes/home.stack';
+import { ClienteStackNavigationProp } from '@routes/cliente.stack';
 
 import AvaliacaoEstrelas from '@molecules/AvaliacaoEstrelas';
 import Spacer from '@atoms/Spacer';
@@ -23,7 +23,7 @@ interface IClinicaListItemProps {
 }
 
 const ClinicaListItem: React.FC<IClinicaListItemProps> = ({ clinica }) => {
-  const { navigate } = useNavigation<HomeStackNavigationProp>();
+  const { navigate } = useNavigation<ClienteStackNavigationProp>();
 
   return (
     <Container

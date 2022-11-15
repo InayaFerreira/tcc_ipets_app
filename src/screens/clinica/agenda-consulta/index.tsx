@@ -10,7 +10,7 @@ import Voltar from '@images/voltar.svg';
 import { getTodayCalendarDate } from '@utils/date';
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
-import { HomeStackParams } from '@routes/home.stack';
+import { ClienteStackParams } from '@routes/cliente.stack';
 
 import PetListItem from '@molecules/PetListItem';
 import Button from '@molecules/Button';
@@ -22,7 +22,7 @@ import CustomCalendar from '@atoms/CustomCalendar';
 import ContainerWhite from '@atoms/ContainerWhite';
 import Container from '@atoms/Container';
 
-type Props = NativeStackScreenProps<HomeStackParams, 'AgendaConsulta'>;
+type Props = NativeStackScreenProps<ClienteStackParams, 'AgendaConsulta'>;
 
 const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
   const { clinica } = route.params;
