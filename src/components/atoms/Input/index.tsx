@@ -14,12 +14,14 @@ import {
 
 export interface IInputProps extends TextInputMaskProps {
   label?: string;
+  labelColor?: string;
   errorMessage?: string;
   icon?: React.ReactNode;
 }
 
 const Input: React.FC<IInputProps> = ({
   label,
+  labelColor,
   errorMessage,
   icon,
   ...restProps
@@ -28,7 +30,7 @@ const Input: React.FC<IInputProps> = ({
     <ContainerInput>
       {label && (
         <ContainerLabel>
-          <CustomText color="#ffffff" bold>
+          <CustomText color={labelColor || '#ffffff'} bold>
             {label}
           </CustomText>
         </ContainerLabel>

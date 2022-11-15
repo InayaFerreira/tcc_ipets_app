@@ -54,7 +54,7 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
       <Spacer top={68} />
 
       <ContainerWhite>
-        <ContainerImagem source={{ uri: clinica.imagem }} />
+        <ContainerImagem source={require('@images/clinica.png')} />
 
         <Spacer top={78} />
 
@@ -65,7 +65,7 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
 
           <Spacer top={12} />
 
-          <AvaliacaoEstrelas avaliacao={clinica.avaliacao} />
+          <AvaliacaoEstrelas avaliacao={clinica.pontuacao} />
 
           <Spacer top={12} />
 
@@ -92,7 +92,7 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <Spacer top={12} />
 
-        <CustomText>{clinica.servicos.join(', ')}.</CustomText>
+        <CustomText>{clinica.servicos}.</CustomText>
 
         <Spacer top={24} />
 
@@ -112,7 +112,7 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <Spacer top={12} />
 
-        <CustomText>{clinica.pagamento.join(', ')}.</CustomText>
+        <CustomText>{clinica.pagamentos.join(', ')}.</CustomText>
 
         <Spacer top={24} />
 

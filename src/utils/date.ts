@@ -54,3 +54,7 @@ export function convertToCalendarDate(date: string): string {
 
   return new Date(`${year}-${month}-${day}`).toISOString().slice(0, 10);
 }
+
+export function getTodayCalendarDate(): string {
+  return convertUtcDateToBrazilTimezone(new Date()).toISOString().slice(0, 10);
+}

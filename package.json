@@ -20,6 +20,7 @@
     "js-brasil": "^2.5.3",
     "react": "18.0.0",
     "react-native": "0.69.0",
+    "react-native-calendars": "^1.1291.1",
     "react-native-device-info": "^9.0.2",
     "react-native-gesture-handler": "^2.5.0",
     "react-native-mmkv-storage": "^0.8.0",

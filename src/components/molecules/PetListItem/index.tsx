@@ -1,13 +1,9 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 
-import { IClinica } from '@services/api/Clinica';
+import { IPet } from '@services/api/PetService';
 
 import { getOpacityByPress } from '@utils/styles';
 
-import { HomeStackNavigationProp } from '@routes/home.stack';
-
-import AvaliacaoEstrelas from '@molecules/AvaliacaoEstrelas';
 import Spacer from '@atoms/Spacer';
 import CustomText from '@atoms/CustomText';
 import {
@@ -18,35 +14,39 @@ import {
 } from './styles';
 
 interface IPetListItemProps {
-  clinica: IClinica;
+  pet: IPet;
+  selecionado: boolean;
+  setAnimalSelecionado: React.Dispatch<React.SetStateAction<IPet | undefined>>;
   children?: React.ReactNode;
 }
 
-const PetListItem: React.FC<IPetListItemProps> = ({ clinica }) => {
-  const { navigate } = useNavigation<HomeStackNavigationProp>();
-
+const PetListItem: React.FC<IPetListItemProps> = ({
+  pet,
+  selecionado,
+  setAnimalSelecionado,
+}) => {
   return (
     <Container
       style={getOpacityByPress}
-      onPress={() => navigate('Clinica', { clinica })}>
-      <ContainerImagem source={{ uri: clinica.imagem }} />
+      selecionado={selecionado}
+      onPress={() => setAnimalSelecionado(pet)}>
+      <ContainerImagem source={require('@images/pet.png')} />
 
       <ContainerDados>
         <CustomText size={13} bold numberOfLines={1}>
-          {clinica.nome}
-        </CustomText>
-
-        <CustomText size={10} numberOfLines={2}>
-          {clinica.servicos.join(', ')}.
+          {pet.nome}
         </CustomText>
 
         <Spacer top={12} />
 
         <ContainerAvaliacoes>
-          <AvaliacaoEstrelas avaliacao={clinica.avaliacao} />
+          <CustomText size={10} bold>
+            {pet.raca}, {pet.idade} anos{'\n'}
+            {pet.porte}
+          </CustomText>
 
           <CustomText size={10} bold>
-            {clinica.avaliacaoCount} avaliações
+            {pet.ultimaConsulta}
           </CustomText>
         </ContainerAvaliacoes>
       </ContainerDados>

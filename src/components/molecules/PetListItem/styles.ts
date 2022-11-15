@@ -1,10 +1,15 @@
 import styled from 'styled-components/native';
 import { Image } from 'react-native';
 
-export const Container = styled.Pressable`
+interface IContainerProps {
+  selecionado: boolean;
+}
+
+export const Container = styled.Pressable<IContainerProps>`
   width: 140px;
   height: 182px;
   margin-right: 12px;
+  background-color: ${props => (props.selecionado ? '#f0f0f0' : '#ffffff')};
   border: 1px solid #e6e6e6;
   border-radius: 14px;
 `;
