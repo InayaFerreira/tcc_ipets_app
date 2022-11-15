@@ -5,8 +5,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { IPet, PetService } from '@services/api/PetService';
 import { usePopup } from '@context/popup';
 
-import Voltar from '@images/voltar.svg';
-
 import { getTodayCalendarDate } from '@utils/date';
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
@@ -14,6 +12,7 @@ import { ClienteStackParams } from '@routes/cliente.stack';
 
 import PetListItem from '@molecules/PetListItem';
 import Button from '@molecules/Button';
+import VoltarButton from '@atoms/Voltar';
 import Spacer from '@atoms/Spacer';
 import Loader from '@atoms/Loader';
 import Input from '@atoms/Input';
@@ -64,7 +63,7 @@ const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
       <Pressable
         style={{ position: 'absolute', top: 16, left: 16 }}
         onPress={() => navigation.goBack()}>
-        <Voltar />
+        <VoltarButton />
       </Pressable>
 
       <Spacer top={32} />
@@ -113,8 +112,8 @@ const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
           label="Selecione a hora:"
           labelColor="#000000"
           placeholder="Informe a hora"
-          mask="99:99"
           keyboardType="numeric"
+          mask="[00]:[00]"
           value={consultaHora}
           onChangeText={setConsultaHora}
         />

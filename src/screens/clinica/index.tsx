@@ -4,14 +4,13 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { usePopup } from '@context/popup';
 
-import Voltar from '@images/voltar.svg';
-
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
 import { ClienteStackParams } from '@routes/cliente.stack';
 
 import Button from '@molecules/Button';
 import AvaliacaoEstrelas from '@molecules/AvaliacaoEstrelas';
+import VoltarButton from '@atoms/Voltar';
 import Spacer from '@atoms/Spacer';
 import CustomText from '@atoms/CustomText';
 import ContainerWhite from '@atoms/ContainerWhite';
@@ -48,7 +47,7 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
       <Pressable
         style={{ position: 'absolute', top: 16, left: 16 }}
         onPress={() => navigation.goBack()}>
-        <Voltar />
+        <VoltarButton />
       </Pressable>
 
       <Spacer top={68} />

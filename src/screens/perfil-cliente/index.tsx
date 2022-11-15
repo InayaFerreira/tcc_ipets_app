@@ -5,8 +5,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { IPet } from '@services/api/PetService';
 import { useAuth } from '@context/auth';
 
-import Voltar from '@images/voltar.svg';
-
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
 import { ClienteStackParams } from '@routes/cliente.stack';
@@ -15,6 +13,7 @@ import PetRuaListItem from '@molecules/PetRuaListItem';
 import PetListItem from '@molecules/PetListItem';
 import ConsultaListItem from '@molecules/ConsultaListItem';
 import Button from '@molecules/Button';
+import VoltarButton from '@atoms/Voltar';
 import Spacer from '@atoms/Spacer';
 import CustomText from '@atoms/CustomText';
 import ContainerWhite from '@atoms/ContainerWhite';
@@ -33,7 +32,7 @@ const PerfilClienteScreen: React.FC<Props> = ({ navigation }) => {
       <Pressable
         style={{ position: 'absolute', top: 16, left: 16 }}
         onPress={() => navigation.goBack()}>
-        <Voltar />
+        <VoltarButton />
       </Pressable>
 
       <Spacer top={68} />
