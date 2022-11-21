@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { IPetRua } from '@services/api/Pet';
+
 import { getOpacityByPress } from '@utils/styles';
 
 import Spacer from '@atoms/Spacer';
@@ -12,14 +14,14 @@ import {
 } from './styles';
 
 interface IPetRuaListItemProps {
-  pet: any;
-
+  pet: IPetRua;
+  onPress?: (pet: IPetRua) => void;
   children?: React.ReactNode;
 }
 
-const PetRuaListItem: React.FC<IPetRuaListItemProps> = ({ pet }) => {
+const PetRuaListItem: React.FC<IPetRuaListItemProps> = ({ pet, onPress }) => {
   return (
-    <Container style={getOpacityByPress}>
+    <Container style={getOpacityByPress} onPress={() => onPress?.(pet)}>
       <ContainerImagem source={require('@images/pet.png')} />
 
       <ContainerDados>
@@ -31,13 +33,7 @@ const PetRuaListItem: React.FC<IPetRuaListItemProps> = ({ pet }) => {
 
         <ContainerAvaliacoes>
           <CustomText size={10} bold>
-            {pet.endereco}
-            {'\n'}
-            {pet.status}
-          </CustomText>
-
-          <CustomText size={10} bold>
-            {pet.atualizacao}
+            {pet.localEncontrado}
           </CustomText>
         </ContainerAvaliacoes>
       </ContainerDados>

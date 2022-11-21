@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IPet } from '@services/api/PetService';
+import { IPet } from '@services/api/Pet';
 
 import { getOpacityByPress } from '@utils/styles';
 
@@ -17,6 +17,7 @@ interface IPetListItemProps {
   pet: IPet;
   selecionado: boolean;
   setAnimalSelecionado?: React.Dispatch<React.SetStateAction<IPet | undefined>>;
+  onPress?: (pet: IPet) => void;
   children?: React.ReactNode;
 }
 
@@ -24,12 +25,16 @@ const PetListItem: React.FC<IPetListItemProps> = ({
   pet,
   selecionado,
   setAnimalSelecionado,
+  onPress,
 }) => {
   return (
     <Container
       style={getOpacityByPress}
       selecionado={selecionado}
-      onPress={() => setAnimalSelecionado?.(pet)}>
+      onPress={() => {
+        onPress?.(pet);
+        setAnimalSelecionado?.(pet);
+      }}>
       <ContainerImagem source={require('@images/pet.png')} />
 
       <ContainerDados>

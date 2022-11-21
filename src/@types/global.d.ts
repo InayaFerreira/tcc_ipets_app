@@ -9,4 +9,9 @@ export declare global {
   }
 
   type TAuthState = 'desautenticado' | 'cliente' | 'clinica';
+
+  type TUserInfo = {
+    nome: string;
+    endereco: string;
+  };
 }

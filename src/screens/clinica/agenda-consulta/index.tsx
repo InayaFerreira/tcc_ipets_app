@@ -2,7 +2,7 @@ import { Pressable, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { IPet, PetService } from '@services/api/PetService';
+import { IPet, PetService } from '@services/api/Pet';
 import { usePopup } from '@context/popup';
 
 import { getTodayCalendarDate } from '@utils/date';

@@ -1,7 +1,7 @@
 import { Pressable, ScrollView } from 'react-native';
 import React from 'react';
 
-import { IPet } from '@services/api/PetService';
+import { IPet } from '@services/api/Pet';
 import { usePopup } from '@context/popup';
 import { useAuth } from '@context/auth';
 

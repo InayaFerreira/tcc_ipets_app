@@ -1,8 +1,11 @@
 import { Pressable, ScrollView } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { IPet } from '@services/api/PetService';
+import { IPet, IPetRua, PetService } from '@services/api/Pet';
+import { ConsultaService, IConsulta } from '@services/api/Consulta';
+import { ClinicaService, IClinica } from '@services/api/Clinica';
+import { usePopup } from '@context/popup';
 import { useAuth } from '@context/auth';
 
 import { FONT_SIZE_H2 } from '@styles/typograph';
@@ -23,7 +26,75 @@ import { ContainerImagem, ContainerTitulo } from './styles';
 type Props = NativeStackScreenProps<ClienteStackParams, 'PerfilCliente'>;
 
 const PerfilClienteScreen: React.FC<Props> = ({ navigation }) => {
-  const { signOut } = useAuth();
+  const { userInfo, signOut } = useAuth();
+  const popup = usePopup();
+
+  const [pets, setPets] = useState<IPet[]>([]);
+  const [consultas, setConsultas] = useState<IConsulta[]>([]);
+  const [clinicas, setClinicas] = useState<IClinica[]>([]);
+  const [petsRua, setPetsRua] = useState<IPetRua[]>([]);
+
+  const handlePetPress = (pet: IPet) => {
+    popup.show({
+      title: pet.nome,
+      content: `Raça: ${pet.raca}\n\nIdade: ${pet.idade} anos\n\nPorte: ${pet.porte}`,
+      buttons: [
+        {
+          text: 'OK',
+          handler: popup.hide,
+        },
+      ],
+    });
+  };
+
+  const handleConsultaPress = (
+    clinica: string,
+    nomePet: string,
+    data: string,
+  ) => {
+    popup.show({
+      title: 'Informações da consulta',
+      content: `Clínica: ${clinica}\n\nNome do Pet: ${nomePet}\n\nData: ${data}`,
+      buttons: [
+        {
+          text: 'OK',
+          handler: popup.hide,
+        },
+      ],
+    });
+  };
+
+  const handleAnimalRuaPress = (pet: IPetRua) => {
+    popup.show({
+      title: 'Ficha do animal de rua',
+      content: `Nome Provisório: ${pet.nome}\n\nPorte: ${pet.porte}\n\nEncontrado em: ${pet.localEncontrado}\n\nStatus: Em aguardo`,
+      buttons: [
+        {
+          text: 'OK',
+          handler: popup.hide,
+        },
+      ],
+    });
+  };
+
+  useEffect(() => {
+    PetService.ListagemPet(userInfo.usuarioId).then(({ data }) => {
+      setPets(data);
+    });
+
+    ConsultaService.ListagemConsulta(userInfo.usuarioId).then(({ data }) => {
+      setConsultas(data);
+    });
+
+    ClinicaService.Listagem().then(({ data }) => {
+      setClinicas(data);
+    });
+
+    PetService.ListagemPetRua().then(({ data }) => {
+      setPetsRua(data);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container paddingHorizontal={0}>
@@ -44,13 +115,13 @@ const PerfilClienteScreen: React.FC<Props> = ({ navigation }) => {
 
         <ContainerTitulo>
           <CustomText size={FONT_SIZE_H2} bold center>
-            Jorge Nunes
+            {userInfo?.nome}
           </CustomText>
 
           <Spacer top={12} />
 
           <CustomText bold center>
-            Rua Edinaldo Pereira, 245 São Paulo -SP
+            {userInfo?.endereco}
           </CustomText>
         </ContainerTitulo>
 
@@ -69,41 +140,14 @@ const PerfilClienteScreen: React.FC<Props> = ({ navigation }) => {
         <Spacer top={16} />
 
         <ScrollView horizontal>
-          <PetListItem
-            pet={
-              {
-                nome: 'Lua',
-                raca: 'Vira-Lata',
-                idade: 3,
-                ultimaConsulta: '13/01/2022',
-              } as IPet
-            }
-            selecionado={false}
-          />
-
-          <PetListItem
-            pet={
-              {
-                nome: 'Sol',
-                raca: 'Vira-Lata',
-                idade: 3,
-                ultimaConsulta: '10/11/2022',
-              } as IPet
-            }
-            selecionado={false}
-          />
-
-          <PetListItem
-            pet={
-              {
-                nome: 'Apyr',
-                raca: 'Pastor Alemão',
-                idade: 3,
-                ultimaConsulta: '15/08/2022',
-              } as IPet
-            }
-            selecionado={false}
-          />
+          {pets.map(pet => (
+            <PetListItem
+              key={pet.petId}
+              pet={pet}
+              selecionado={false}
+              onPress={handlePetPress}
+            />
+          ))}
         </ScrollView>
 
         <Spacer top={24} />
@@ -115,29 +159,29 @@ const PerfilClienteScreen: React.FC<Props> = ({ navigation }) => {
         <Spacer top={16} />
 
         <ScrollView horizontal>
-          <ConsultaListItem
-            consulta={{
-              titulo: 'Lua vai para Clínica Futuro',
-              tipo: 'Castração',
-              data: '25/12/22 - 16:30',
-            }}
-          />
+          {consultas.map(consulta => {
+            const pet = pets.find(p => p.petId === consulta.idPet);
+            const clinica = clinicas.find(
+              c => c.clinicaId === consulta.idClinica,
+            );
 
-          <ConsultaListItem
-            consulta={{
-              titulo: 'Sol vai para Clínica Osmond',
-              tipo: 'Dermatologia',
-              data: '15/10/22 - 15:30',
-            }}
-          />
-
-          <ConsultaListItem
-            consulta={{
-              titulo: 'Apyr vai para Clínica ENA',
-              tipo: 'Hemodialise',
-              data: '25/12/22 - 16:30',
-            }}
-          />
+            return (
+              <ConsultaListItem
+                key={pet?.petId}
+                consulta={{
+                  titulo: `${pet?.nome} vai para ${clinica?.nome}`,
+                  data: consulta.data,
+                }}
+                onPress={() =>
+                  handleConsultaPress(
+                    clinica?.nome || '',
+                    pet?.nome || '',
+                    new Date(consulta.data).toLocaleDateString('pt-BR'),
+                  )
+                }
+              />
+            );
+          })}
         </ScrollView>
 
         <Spacer top={24} />
@@ -149,32 +193,13 @@ const PerfilClienteScreen: React.FC<Props> = ({ navigation }) => {
         <Spacer top={16} />
 
         <ScrollView horizontal>
-          <PetRuaListItem
-            pet={{
-              nome: 'Adelson',
-              endereco: 'Rua Almirante Barroso, 286, SP',
-              status: 'Em Aguardo',
-              atualizacao: 'Atualizado hoje',
-            }}
-          />
-
-          <PetRuaListItem
-            pet={{
-              nome: 'Cleiton',
-              endereco: 'Rua José Bonifácio, 21, SP',
-              status: 'Em tratamento',
-              atualizacao: 'Atualizado ontem',
-            }}
-          />
-
-          <PetRuaListItem
-            pet={{
-              nome: 'Johnas',
-              endereco: 'Rua Jade, 3, SP',
-              status: 'Abrigado',
-              atualizacao: 'Atualizado a 2 dias',
-            }}
-          />
+          {petsRua.map((petRua, idx) => (
+            <PetRuaListItem
+              key={idx}
+              pet={petRua}
+              onPress={handleAnimalRuaPress}
+            />
+          ))}
         </ScrollView>
       </ContainerWhite>
     </Container>

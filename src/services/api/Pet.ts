@@ -13,16 +13,20 @@ export interface IPet {
 }
 
 export interface IPetRua {
-  petId: number;
   nome: string;
   localEncontrado: string;
-  status: string;
-  atualizado: string;
+  ferido: number;
+  desnutrido: number;
+  agressivo: number;
+  porte: number;
+  observacoes?: string;
 }
 
 export const PetService = {
-  ListagemPet: () => {
-    return api.get<IPet[]>('/pet');
+  ListagemPet: (userId?: number) => {
+    return api.get<IPet[]>(
+      userId !== undefined ? `/petsByUserId/${userId}` : '/pet',
+    );
   },
 
   ListagemPetRua: () => {

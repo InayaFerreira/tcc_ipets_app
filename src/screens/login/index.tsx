@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
+import { AuthService } from '@services/api/Auth';
+import { usePopup } from '@context/popup';
 import { useAuth } from '@context/auth';
 
 import Logo from '@images/logo.svg';
@@ -32,23 +34,36 @@ const FormSchema = Yup.object().shape({
 
 const LoginScreen: React.FC = () => {
   const { navigate } = useNavigation();
-  const [loading, setLoading] = useState<boolean>(false);
+  const { signIn, setUserInfo } = useAuth();
+  const popup = usePopup();
 
-  const { signIn } = useAuth();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleFormSubmit = (values: FormValues) => {
     if (loading) {
       return;
     }
 
-    console.log(values);
-
     setLoading(true);
-    signIn('cliente');
-    setLoading(false);
-  };
 
-  const handleRegister = () => navigate('Cadastro');
+    AuthService.Login(values.email, values.senha)
+      .then(({ data }) => {
+        if (data.clinicaId !== undefined) {
+          return signIn('cliente');
+        }
+
+        setUserInfo({ ...data });
+        signIn('cliente');
+      })
+      .catch(() => {
+        popup.show({
+          title: 'Aviso',
+          content: 'Erro ao realizar login.',
+          buttons: [{ text: 'OK', handler: popup.hide }],
+        });
+      })
+      .finally(() => setLoading(false));
+  };
 
   return (
     <Container>
@@ -108,7 +123,7 @@ const LoginScreen: React.FC = () => {
             <Button
               loading={loading}
               widthPercentage={50}
-              onPress={handleRegister}>
+              onPress={() => navigate('Cadastro')}>
               Cadastre-se
             </Button>
           </>

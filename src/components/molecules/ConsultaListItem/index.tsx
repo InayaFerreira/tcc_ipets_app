@@ -12,13 +12,20 @@ import {
 } from './styles';
 
 interface IConsultaListItemProps {
-  consulta: any;
+  consulta: {
+    titulo: string;
+    data: string;
+  };
+  onPress?: () => void;
   children?: React.ReactNode;
 }
 
-const ConsultaListItem: React.FC<IConsultaListItemProps> = ({ consulta }) => {
+const ConsultaListItem: React.FC<IConsultaListItemProps> = ({
+  consulta,
+  onPress,
+}) => {
   return (
-    <Container style={getOpacityByPress}>
+    <Container style={getOpacityByPress} onPress={onPress}>
       <ContainerImagem source={require('@images/consulta.png')} />
 
       <ContainerDados>
@@ -30,11 +37,7 @@ const ConsultaListItem: React.FC<IConsultaListItemProps> = ({ consulta }) => {
 
         <ContainerAvaliacoes>
           <CustomText size={10} bold>
-            {consulta.tipo}
-          </CustomText>
-
-          <CustomText size={10} bold>
-            {consulta.data}
+            {new Date(consulta.data).toLocaleDateString('pt-BR')}
           </CustomText>
         </ContainerAvaliacoes>
       </ContainerDados>

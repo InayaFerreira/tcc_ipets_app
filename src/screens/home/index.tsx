@@ -110,9 +110,11 @@ const HomeScreen: React.FC = () => {
             <Spacer top={16} />
 
             <ScrollView horizontal>
-              {clinicas.map(clinica => (
-                <ClinicaListItem key={clinica.clinicaId} clinica={clinica} />
-              ))}
+              {clinicas
+                .sort((a, b) => b.pontuacao - a.pontuacao)
+                .map(clinica => (
+                  <ClinicaListItem key={clinica.clinicaId} clinica={clinica} />
+                ))}
             </ScrollView>
 
             <Spacer top={16} />
@@ -123,11 +125,7 @@ const HomeScreen: React.FC = () => {
 
             <Spacer top={16} />
 
-            <ScrollView horizontal>
-              {clinicas.map(clinica => (
-                <ClinicaListItem key={clinica.clinicaId} clinica={clinica} />
-              ))}
-            </ScrollView>
+            <CustomText>Coming Soon...</CustomText>
           </>
         ) : (
           <Loader />
