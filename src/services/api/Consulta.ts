@@ -12,4 +12,8 @@ export const ConsultaService = {
   ListagemConsulta: (userId: number) => {
     return api.get<IConsulta[]>(`/consultasByUserId/${userId}`);
   },
+
+  Agendar: (consulta: IConsulta) => {
+    return api.post('/consulta', { ...consulta });
+  },
 };

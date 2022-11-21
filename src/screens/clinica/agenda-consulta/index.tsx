@@ -3,13 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { IPet, PetService } from '@services/api/Pet';
+import { ConsultaService } from '@services/api/Consulta';
+import { usePopup } from '@context/popup';
+import { useAuth } from '@context/auth';
 
-import { getTodayCalendarDate } from '@utils/date';
+import { convertCalendarDateToIso, getTodayCalendarDate } from '@utils/date';
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
 import { ClienteStackParams } from '@routes/cliente.stack';
 
-import { usePopup } from '@context/popup';
 import PetListItem from '@molecules/PetListItem';
 import Button from '@molecules/Button';
 import VoltarButton from '@atoms/Voltar';
@@ -25,8 +27,10 @@ type Props = NativeStackScreenProps<ClienteStackParams, 'AgendaConsulta'>;
 
 const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
   const { clinica } = route.params;
+  const { userInfo } = useAuth();
   const popup = usePopup();
 
+  const [loading, setLoading] = useState<boolean>(false);
   const [animais, setAnimais] = useState<IPet[]>();
 
   const [animalSelecionado, setAnimalSelecionado] = useState<IPet>();
@@ -36,7 +40,38 @@ const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
   const [consultaHora, setConsultaHora] = useState<string>('');
 
   const handleSubmit = () => {
-    console.log(clinica, animalSelecionado, consultaData, consultaHora);
+    setLoading(true);
+
+    ConsultaService.Agendar({
+      consultaId: 0,
+      ativo: true,
+      data: convertCalendarDateToIso(consultaData),
+      idClinica: clinica.clinicaId,
+      idPet: animalSelecionado!.petId,
+    })
+      .then(() => {
+        popup.show({
+          title: 'Aviso',
+          content: 'Consulta agendada com sucesso.',
+          buttons: [
+            {
+              text: 'OK',
+              handler: () => {
+                popup.hide();
+                navigation.goBack();
+              },
+            },
+          ],
+        });
+      })
+      .catch(() => {
+        popup.show({
+          title: 'Aviso',
+          content: 'Erro ao agendar consulta.',
+          buttons: [{ text: 'OK', handler: popup.hide }],
+        });
+      })
+      .finally(() => setLoading(false));
   };
 
   const openDatePicker = () => {
@@ -53,9 +88,10 @@ const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
   };
 
   useEffect(() => {
-    PetService.ListagemPet().then(({ data }) => {
+    PetService.ListagemPet(userInfo.usuarioId).then(({ data }) => {
       setAnimais(data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -120,7 +156,7 @@ const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <Spacer top={32} />
 
-        <Button widthPercentage={50} onPress={handleSubmit}>
+        <Button loading={loading} widthPercentage={50} onPress={handleSubmit}>
           Agendar
         </Button>
       </ContainerWhite>

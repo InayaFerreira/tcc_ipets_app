@@ -55,6 +55,12 @@ export function convertToCalendarDate(date: string): string {
   return new Date(`${year}-${month}-${day}`).toISOString().slice(0, 10);
 }
 
+export function convertCalendarDateToIso(date: string): string {
+  const [day, month, year] = date.split('/');
+
+  return new Date(`${year}-${month}-${day}`).toISOString();
+}
+
 export function getTodayCalendarDate(): string {
   return convertUtcDateToBrazilTimezone(new Date()).toISOString().slice(0, 10);
 }
