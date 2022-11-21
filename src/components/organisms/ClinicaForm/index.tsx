@@ -3,13 +3,12 @@ import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 
-import { useAuth } from '@context/auth';
-
 import UserIcon from '@icons/user.svg';
 import EmailIcon from '@icons/email.svg';
 import ChaveIcon from '@icons/chave.svg';
 import CertificadoIcon from '@icons/certificado.svg';
 
+import { useAuth } from '@context/auth';
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
 import Input from '@atoms/Input';

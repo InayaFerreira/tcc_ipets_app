@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { IPet, PetService } from '@services/api/Pet';
-import { usePopup } from '@context/popup';
 
 import { getTodayCalendarDate } from '@utils/date';
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
 import { ClienteStackParams } from '@routes/cliente.stack';
 
+import { usePopup } from '@context/popup';
 import PetListItem from '@molecules/PetListItem';
 import Button from '@molecules/Button';
 import VoltarButton from '@atoms/Voltar';

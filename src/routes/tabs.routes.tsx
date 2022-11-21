@@ -1,10 +1,10 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { useAuth } from '@context/auth';
-
 import ClinicaStack from '@routes/clinica.stack';
 import ClienteStack from '@routes/cliente.stack';
+
+import { useAuth } from '@context/auth';
 
 export type TabParamList = {
   ClienteStack: undefined;

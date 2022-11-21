@@ -32,4 +32,8 @@ export const PetService = {
   ListagemPetRua: () => {
     return api.get<IPetRua[]>('/petRua');
   },
+
+  CadastraPetRua: (pet: IPetRua) => {
+    return api.post('/petRua', { ...pet });
+  },
 };

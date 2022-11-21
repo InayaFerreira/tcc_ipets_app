@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
 import { ClinicaService, IClinica } from '@services/api/Clinica';
-import { usePopup } from '@context/popup';
 
 import Menu from '@images/menu.svg';
 import Logo from '@images/logo.svg';
@@ -23,22 +22,8 @@ import { ContainerTitulo } from './styles';
 
 const HomeScreen: React.FC = () => {
   const { navigate } = useNavigation<ClienteStackNavigationProp>();
-  const popup = usePopup();
 
   const [clinicas, setClinicas] = useState<IClinica[]>();
-
-  const handleSos = () => {
-    popup.show({
-      title: 'Aviso',
-      content: 'Este recurso encontra-se em desenvolvimento.',
-      buttons: [
-        {
-          text: 'OK',
-          handler: popup.hide,
-        },
-      ],
-    });
-  };
 
   useEffect(() => {
     ClinicaService.Listagem().then(({ data }) => {
@@ -69,7 +54,7 @@ const HomeScreen: React.FC = () => {
 
         <Spacer top={16} />
 
-        <Button widthPercentage={50} onPress={handleSos}>
+        <Button widthPercentage={50} onPress={() => navigate('SOS')}>
           S.O.S
         </Button>
 

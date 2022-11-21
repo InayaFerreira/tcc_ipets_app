@@ -5,14 +5,14 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { IPet, IPetRua, PetService } from '@services/api/Pet';
 import { ConsultaService, IConsulta } from '@services/api/Consulta';
 import { ClinicaService, IClinica } from '@services/api/Clinica';
-import { usePopup } from '@context/popup';
-import { useAuth } from '@context/auth';
 
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
 import { ClienteStackParams } from '@routes/cliente.stack';
 
 import PetRuaListItem from '@molecules/PetRuaListItem';
+import { usePopup } from '@context/popup';
+import { useAuth } from '@context/auth';
 import PetListItem from '@molecules/PetListItem';
 import ConsultaListItem from '@molecules/ConsultaListItem';
 import Button from '@molecules/Button';

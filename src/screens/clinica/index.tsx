@@ -2,12 +2,11 @@ import { Pressable } from 'react-native';
 import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { usePopup } from '@context/popup';
-
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
 import { ClienteStackParams } from '@routes/cliente.stack';
 
+import { usePopup } from '@context/popup';
 import Button from '@molecules/Button';
 import AvaliacaoEstrelas from '@molecules/AvaliacaoEstrelas';
 import VoltarButton from '@atoms/Voltar';
