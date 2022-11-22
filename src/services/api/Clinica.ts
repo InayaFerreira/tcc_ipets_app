@@ -1,3 +1,6 @@
+import { IPet } from './Pet';
+import { IConsulta } from './Consulta';
+
 import { api } from '.';
 
 export interface IClinica {
@@ -16,5 +19,13 @@ export interface IClinica {
 export const ClinicaService = {
   Listagem: () => {
     return api.get<IClinica[]>('/clinica');
+  },
+
+  ListagemPet: (clinicaId: number) => {
+    return api.get<IPet[]>(`/petsByClinicaId/${clinicaId}`);
+  },
+
+  ListagemConsulta: (clinicaId: number) => {
+    return api.get<IConsulta[]>(`/consultasByClinicaId/${clinicaId}`);
   },
 };

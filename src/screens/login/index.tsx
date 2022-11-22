@@ -5,6 +5,8 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 
 import { AuthService } from '@services/api/Auth';
+import { usePopup } from '@context/popup';
+import { useAuth } from '@context/auth';
 
 import Logo from '@images/logo.svg';
 import Divider from '@images/divider.svg';
@@ -13,8 +15,6 @@ import ChaveIcon from '@icons/chave.svg';
 
 import { FONT_SIZE_H3 } from '@styles/typograph';
 
-import { usePopup } from '@context/popup';
-import { useAuth } from '@context/auth';
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
 import Input from '@atoms/Input';
@@ -48,12 +48,8 @@ const LoginScreen: React.FC = () => {
 
     AuthService.Login(values.email, values.senha)
       .then(({ data }) => {
-        if (data.clinicaId !== undefined) {
-          return signIn('cliente');
-        }
-
         setUserInfo({ ...data });
-        signIn('cliente');
+        signIn(data.crmv !== undefined ? 'clinica' : 'cliente');
       })
       .catch(() => {
         popup.show({

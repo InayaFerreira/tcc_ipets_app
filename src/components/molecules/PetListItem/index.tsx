@@ -17,7 +17,8 @@ interface IPetListItemProps {
   pet: IPet;
   selecionado: boolean;
   setAnimalSelecionado?: React.Dispatch<React.SetStateAction<IPet | undefined>>;
-  onPress?: (pet: IPet) => void;
+  dataConsulta?: string;
+  onPress?: (pet: IPet, dataConsulta?: string) => void;
   children?: React.ReactNode;
 }
 
@@ -25,6 +26,7 @@ const PetListItem: React.FC<IPetListItemProps> = ({
   pet,
   selecionado,
   setAnimalSelecionado,
+  dataConsulta,
   onPress,
 }) => {
   return (
@@ -32,7 +34,7 @@ const PetListItem: React.FC<IPetListItemProps> = ({
       style={getOpacityByPress}
       selecionado={selecionado}
       onPress={() => {
-        onPress?.(pet);
+        onPress?.(pet, dataConsulta);
         setAnimalSelecionado?.(pet);
       }}>
       <ContainerImagem source={require('@images/pet.png')} />

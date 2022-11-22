@@ -16,4 +16,9 @@ export const ConsultaService = {
   Agendar: (consulta: IConsulta) => {
     return api.post('/consulta', { ...consulta });
   },
+
+  Cancelar: (consulta: IConsulta) => {
+    consulta.ativo = false;
+    return api.put('/consulta', { ...consulta });
+  },
 };
