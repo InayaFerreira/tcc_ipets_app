@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+
+import { AuthService } from '@services/api/Auth';
+import { usePopup } from '@context/popup';
 
 import UserIcon from '@icons/user.svg';
 import EmailIcon from '@icons/email.svg';
 import ChaveIcon from '@icons/chave.svg';
 import CertificadoIcon from '@icons/certificado.svg';
 
-import { useAuth } from '@context/auth';
 import Button from '@molecules/Button';
 import Spacer from '@atoms/Spacer';
 import Input from '@atoms/Input';
@@ -32,19 +35,55 @@ const FormSchema = Yup.object().shape({
 });
 
 const ClinicaForm: React.FC = () => {
-  const { signIn } = useAuth();
+  const navigation = useNavigation<any>();
+  const popup = usePopup();
+
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleFormSubmit = (values: FormValues) => {
+    if (values.senha !== values.confirmaSenha) {
+      return popup.show({
+        title: 'Aviso',
+        content: 'Senhas não coincidem',
+        buttons: [{ text: 'OK', handler: popup.hide }],
+      });
+    }
+
     if (loading) {
       return;
     }
 
-    console.log(values);
-
     setLoading(true);
-    signIn('clinica');
-    setLoading(false);
+
+    AuthService.CadastroClinica(
+      values.nomeCompleto,
+      values.email,
+      values.senha,
+      values.crmv,
+    )
+      .then(() => {
+        popup.show({
+          title: 'Aviso',
+          content: 'Cadastro realizado com sucesso',
+          buttons: [
+            {
+              text: 'OK',
+              handler: () => {
+                popup.hide();
+                navigation.reset('Login');
+              },
+            },
+          ],
+        });
+      })
+      .catch(() => {
+        popup.show({
+          title: 'Aviso',
+          content: 'Erro ao realizar cadastro',
+          buttons: [{ text: 'OK', handler: popup.hide }],
+        });
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
