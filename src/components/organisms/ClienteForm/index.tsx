@@ -62,7 +62,7 @@ const ClienteForm: React.FC = () => {
               text: 'OK',
               handler: () => {
                 popup.hide();
-                navigation.reset('Login');
+                navigation.replace('Login');
               },
             },
           ],

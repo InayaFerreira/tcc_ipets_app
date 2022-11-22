@@ -2,11 +2,12 @@ import { Pressable } from 'react-native';
 import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { usePopup } from '@context/popup';
+
 import { FONT_SIZE_H2 } from '@styles/typograph';
 
 import { ClienteStackParams } from '@routes/cliente.stack';
 
-import { usePopup } from '@context/popup';
 import Button from '@molecules/Button';
 import AvaliacaoEstrelas from '@molecules/AvaliacaoEstrelas';
 import VoltarButton from '@atoms/Voltar';
@@ -100,7 +101,7 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <Spacer top={12} />
 
-        <CustomText>{clinica.horarios.join('\n')}.</CustomText>
+        <CustomText>{clinica.horarios?.join('\n')}.</CustomText>
 
         <Spacer top={24} />
 
@@ -110,7 +111,7 @@ const ClinicaScreen: React.FC<Props> = ({ navigation, route }) => {
 
         <Spacer top={12} />
 
-        <CustomText>{clinica.pagamentos.join(', ')}.</CustomText>
+        <CustomText>{clinica.pagamentos?.join(', ')}.</CustomText>
 
         <Spacer top={24} />
 

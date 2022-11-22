@@ -40,6 +40,14 @@ const AgendaConsultaScreen: React.FC<Props> = ({ navigation, route }) => {
   const [consultaHora, setConsultaHora] = useState<string>('');
 
   const handleSubmit = () => {
+    if (!animalSelecionado) {
+      return popup.show({
+        title: 'Aviso',
+        content: 'Nenhum animal selecionado.',
+        buttons: [{ text: 'OK', handler: popup.hide }],
+      });
+    }
+
     setLoading(true);
 
     ConsultaService.Agendar({

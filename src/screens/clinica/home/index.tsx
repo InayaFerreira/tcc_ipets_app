@@ -23,11 +23,7 @@ import Container from '@atoms/Container';
 
 import { ContainerImagem, ContainerTitulo } from '../styles';
 
-interface IClinicaHomeScreenProps {
-  children?: React.ReactNode;
-}
-
-const ClinicaHomeScreen: React.FC<IClinicaHomeScreenProps> = () => {
+const ClinicaHomeScreen: React.FC = () => {
   const { userInfo, signOut } = useAuth();
   const popup = usePopup();
 
@@ -106,13 +102,13 @@ const ClinicaHomeScreen: React.FC<IClinicaHomeScreenProps> = () => {
 
         <ContainerTitulo>
           <CustomText size={FONT_SIZE_H2} bold center>
-            Clínica Futuro
+            {userInfo.nome}
           </CustomText>
 
           <Spacer top={12} />
 
           <CustomText bold center>
-            Rua Edinaldo Pereira, 245 São Paulo -SP
+            {userInfo.endereco}
           </CustomText>
         </ContainerTitulo>
 
